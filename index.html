@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galaxy & Luvu</title>
+<title>vanlakiyeuyeyemp</title>
 <style>
     body {
         margin: 0;
@@ -39,6 +39,26 @@
     }
     @keyframes fade { from { opacity: 0.5; } to { opacity: 1; } }
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+    /* Nút bật nhạc */
+    #playBtn {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        font-size: 16px;
+        z-index: 20;
+        cursor: pointer;
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255,105,180,0.8);
+    }
+    #playBtn:hover {
+        background-color: #ff1493;
+    }
 </style>
 </head>
 <body>
@@ -48,18 +68,57 @@
     <p></p>
 </div>
 
+<!-- Nút bật nhạc -->
+<button id="playBtn">bật nhạc lên đe 🎵</button>
+
+<style>
+#playBtn {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    font-size: 18px;
+    z-index: 20;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,105,180,0.8), 0 0 40px rgba(255,20,147,0.6), 0 0 60px rgba(255,105,180,0.4);
+    animation: glow 1.5s infinite alternate, pulse 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(255,105,180,0.6), 0 0 20px rgba(255,20,147,0.4); }
+    50% { box-shadow: 0 0 20px rgba(255,105,180,1), 0 0 40px rgba(255,20,147,0.8); }
+    100% { box-shadow: 0 0 10px rgba(255,105,180,0.6), 0 0 20px rgba(255,20,147,0.4); }
+}
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+#playBtn:hover {
+    background: linear-gradient(45deg, #ff1493, #ff69b4, #ff1493);
+}
+</style>
+
 <!-- Audio nhạc nền -->
 <audio id="bgMusic" loop>
-    <source src="https://raw.githubusercontent.com/ghun1222/kiyeuye/main/Ph%C3%A9p%20M%C3%A0u.mp3
-" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/ghun1222/kiyeuye/main/Ph%C3%A9p%20M%C3%A0u.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Bật nhạc khi người dùng click/touch lần đầu
-document.addEventListener("click", () => {
-    const music = document.getElementById("bgMusic");
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("playBtn");
+
+btn.addEventListener("click", () => {
     music.play().catch(e => console.log("Auto-play blocked:", e));
-}, { once: true });
+    btn.style.display = 'none'; // ẩn nút sau khi nhạc chạy
+});
 </script>
 
 <!-- THREE.JS -->
